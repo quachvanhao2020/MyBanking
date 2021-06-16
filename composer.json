@@ -1,0 +1,33 @@
+{
+    "name": "hao/my-banking",
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\PayPalv2\\":"src"
+        },
+        "files": [
+            "function.php",
+            "define.php"
+        ]
+    },
+    "require": {
+        "league/omnipay": "3",
+        "omnipay/paypal": "^3.0",
+        "monolog/monolog": "^2.2",
+        "vlucas/phpdotenv": "^5.3",
+        "omnipay/stripe": "^3.1",
+        "dilab/omnipay-onepay": "^2.0",
+        "phpviet/omnipay-momo": "^1.0",
+        "moneyphp/money": "^3.3",
+        "paypal/paypal-checkout-sdk": "^1.0"
+    },
+    "config": {
+        "process-timeout":0,
+        "platform": {
+            "php": "7.3"
+        }
+    },
+    "scripts": {
+        "serve": "php -S 0.0.0.0:8088",
+        "test": "phpunit"
+    }
+}

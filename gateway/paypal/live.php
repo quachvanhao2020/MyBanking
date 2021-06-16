@@ -1,0 +1,3 @@
+<?php
+!defined("PAYMENT_CLIENT_ID") && define("PAYMENT_CLIENT_ID",getenv('PAYMENT_CLIENT_ID', true) ? getenv('PAYMENT_CLIENT_ID') : "AZz4I0vDwnWRNlCCy4ypqTuPM7PskJhNpICBQzlPS12SZtOgFh0La3ugexWlfnJHXC2gBjlsHP9OKykK");
+!defined("PAYMENT_SECRET") && define("PAYMENT_SECRET",getenv('PAYMENT_SECRET', true) ? getenv('PAYMENT_SECRET') : "EMX73UhiSK2YWKgemsvWDsjErVlybJwBgcCqRCqCX95lGDdt7YGchyZPi8iSe0wXlVtAUB36L7QmbxYC");
