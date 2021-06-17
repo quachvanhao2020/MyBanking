@@ -9,10 +9,10 @@ ini_set('display_errors', '1');
 global $log;
 $formatter = new LineFormatter(LineFormatter::SIMPLE_FORMAT, LineFormatter::SIMPLE_DATE);
 $formatter->includeStacktraces(true);
-$handle = new TelegramBotHandler('1748527134:AAFX6J8l08_xt_DEm5kuxnxEw4hVKP9vGZ0','-534245921',Logger::ERROR);
+$handle = new TelegramBotHandler(TELEGRAM_TOKEN,TELEGRAM_CHAT_ID,Logger::ERROR);
 $handle->setFormatter($formatter);
 $log = new Logger(APP_NAME);
-$log->pushHandler(new StreamHandler('log.log', Logger::WARNING));
+$log->pushHandler(new StreamHandler(__DIR__.'/log.log', Logger::WARNING));
 $log->pushHandler($handle);
 
 class PHPErrorException extends Exception

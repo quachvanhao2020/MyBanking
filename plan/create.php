@@ -1,52 +1,52 @@
 <?php
 require_once __DIR__."/index.php";
 
-return (function(string $productId,string $name,string $description,string $value){
+return (function(string $productId,string $name,string $description,string $value,string $fee = ""){
     global $_GATEWAY;
     $result = [];
-    $response = $_GATEWAY->createPlan([])->setData([
-        'product_id' => $productId,
-        'name' => $name,
-        'description' => $description,
-        'status' => 'ACTIVE',
-        'billing_cycles' => 
+    $data = [
+      'product_id' => $productId,
+      'name' => $name,
+      'description' => $description,
+      'status' => 'ACTIVE',
+      'billing_cycles' => 
+      [
         [
+          'frequency' => 
           [
-            'frequency' => 
+            'interval_unit' => 'MONTH',
+            'interval_count' => 1,
+          ],
+          'tenure_type' => 'REGULAR',
+          'sequence' => 1,
+          'total_cycles' => 12,
+          'pricing_scheme' => 
+          [
+            'fixed_price' => 
             [
-              'interval_unit' => 'MONTH',
-              'interval_count' => 1,
-            ],
-            'tenure_type' => 'REGULAR',
-            'sequence' => 1,
-            'total_cycles' => 12,
-            'pricing_scheme' => 
-            [
-              'fixed_price' => 
-              [
-                'value' => $value,
-                'currency_code' => 'USD',
-              ],
+              'value' => $value,
+              'currency_code' => 'USD',
             ],
           ],
         ],
-        'payment_preferences' => 
-        [
-          'auto_bill_outstanding' => true,
-          'setup_fee' => 
-          [
-            'value' => $value,
-            'currency_code' => 'USD',
-          ],
-          'setup_fee_failure_action' => 'CONTINUE',
-          'payment_failure_threshold' => 3,
-        ],
-        'taxes' => 
-        [
-          'percentage' => '10',
-          'inclusive' => false,
-        ],
-    ])->send();
+      ],
+      'taxes' => 
+      [
+        'percentage' => '10',
+        'inclusive' => false,
+      ],
+    ];
+    $data['payment_preferences'] = [
+      'auto_bill_outstanding' => true,
+      'setup_fee' => 
+      [
+        'value' => $fee,
+        'currency_code' => 'USD',
+      ],
+      'setup_fee_failure_action' => 'CONTINUE',
+      'payment_failure_threshold' => 3,
+    ];
+    $response = $_GATEWAY->createPlan([])->setData($data)->send();
     $result = $response->getData();
     return release($result);
 })(...$_INPUT);

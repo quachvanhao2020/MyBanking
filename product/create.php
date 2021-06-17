@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__."/index.php";
-//var_dump($_INPUT);
+
 return (function(string $name,string $description,string $type,string $category,string $image_url = "",string $home_url = ""){
     global $_GATEWAY;
     if(empty($description)) $description = "description";
@@ -14,7 +14,6 @@ return (function(string $name,string $description,string $type,string $category,
       "image_url" => $image_url,
       "home_url" => $home_url,
     ];
-    //var_dump($data);
     $result = [];
     $response = $_GATEWAY->createProduct([])->setData($data)->send();
     $result = $response->getData();
