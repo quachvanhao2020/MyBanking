@@ -1,8 +1,7 @@
 <?php
 require_once __DIR__."/index.php";
 
-return (function(string $productId,string $name,string $description,string $value,string $fee = ""){
-    global $_GATEWAY;
+return (function(string $productId,string $name,string $description,string $value,string $fee = "",array $_data = []){
     $result = [];
     $data = [
       'product_id' => $productId,
@@ -46,7 +45,8 @@ return (function(string $productId,string $name,string $description,string $valu
       'setup_fee_failure_action' => 'CONTINUE',
       'payment_failure_threshold' => 3,
     ];
-    $response = $_GATEWAY->createPlan([])->setData($data)->send();
+    $data = array_merge_recursive($data,$_data);
+    $response = pay_gatetway()->createPlan([])->setData($data)->send();
     $result = $response->getData();
     return release($result);
 })(...$_INPUT);

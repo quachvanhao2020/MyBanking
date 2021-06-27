@@ -1,7 +1,7 @@
 <?php
-namespace Omnipay\PayPalv2;
+namespace Omnipay\PayPalv2\Request;
 
-class RestCreatePlanRequest extends AbstractRestRequest
+class RestCreateProductRequest extends AbstractRestRequest
 {
     const API_VERSION = 'v1';
 
@@ -29,10 +29,6 @@ class RestCreatePlanRequest extends AbstractRestRequest
 
     public function getData()
     {
-        $data = array(
-            'name'                  => $this->getName(),
-            'description'           => $this->getDescription(),
-        );
         return $this->data;
     }
 
@@ -45,6 +41,6 @@ class RestCreatePlanRequest extends AbstractRestRequest
      */
     protected function getEndpoint()
     {
-        return parent::getEndpoint() . '/billing/plans';
+        return parent::getEndpoint() . '/catalogs/products';
     }
 }

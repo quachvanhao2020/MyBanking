@@ -1,24 +1,15 @@
 <?php
+use Omnipay\PayPalv2\PayContext;
 require_once __DIR__."/index.php";
 
-return (function(string $plan_id,string $locale = "en-US",string $return_url,string $cancel_url){
-    global $_GATEWAY;
+return (function(string $plan_id,string $locale = "en-US",string $hash,array $data = []){
     $result = [];
-    $response = $_GATEWAY->createSubscription([])->setData([
+    $context = new PayContext($hash);
+    $context->locale = $locale;
+    $response = pay_gatetway()->createSubscription([])->setData(array_merge_recursive([
       'plan_id' => $plan_id,
-      'application_context' => [
-        'brand_name' => BRAND_NAME,
-        'locale' => $locale,
-        'shipping_preference' => 'NO_SHIPPING',
-        'user_action' => 'SUBSCRIBE_NOW',
-        'payment_method' => [
-          'payer_selected' => 'PAYPAL',
-          'payee_preferred' => 'IMMEDIATE_PAYMENT_REQUIRED',
-        ],
-        'return_url' => $return_url,
-        'cancel_url' => $cancel_url,
-      ],
-    ])->send();
+      'application_context' => (array)$context,
+    ],$data))->send();
     $result = $response->getData();
     return release($result);
 })(...$_INPUT);

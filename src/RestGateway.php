@@ -11,27 +11,37 @@ class RestGateway extends PayPalRestGateway{
 
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayPalv2\RestPurchaseRequest', $parameters);
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestPurchaseRequest', $parameters);
     }
 
     public function listPlan(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayPalv2\RestListPlanRequest', $parameters);
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestListPlanRequest', $parameters);
+    }
+
+    public function listProduct(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestListProductRequest', $parameters);
     }
 
     public function createPlan(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayPalv2\RestCreatePlanRequest', $parameters);
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestCreatePlanRequest', $parameters);
+    }
+
+    public function createOrder(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestCreateOrderRequest', $parameters);
     }
 
     public function createProduct(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayPalv2\RestCreateProductRequest', $parameters);
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestCreateProductRequest', $parameters);
     }
 
     public function createSubscription(array $parameters = array())
     {
-        return $this->createRequest('\Omnipay\PayPalv2\RestCreateSubscriptionRequest', $parameters);
+        return $this->createRequest('\Omnipay\PayPalv2\Request\RestCreateSubscriptionRequest', $parameters);
     }
 }
 

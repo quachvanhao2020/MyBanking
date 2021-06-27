@@ -1,6 +1,7 @@
 <?php
-namespace Omnipay\PayPalv2;
+namespace Omnipay\PayPalv2\Request;
 use Omnipay\Common\Exception\InvalidResponseException;
+use Omnipay\PayPalv2\Response\RestResponse;
 
 abstract class AbstractRestRequest extends \Omnipay\Common\Message\AbstractRequest
 {

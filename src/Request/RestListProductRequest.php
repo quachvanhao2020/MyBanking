@@ -1,7 +1,7 @@
 <?php
-namespace Omnipay\PayPalv2;
+namespace Omnipay\PayPalv2\Request;
 
-class RestListPlanRequest extends AbstractRestRequest
+class RestListProductRequest extends AbstractRestRequest
 {
     const API_VERSION = 'v1';
 
@@ -119,6 +119,6 @@ class RestListPlanRequest extends AbstractRestRequest
 
     public function getEndpoint()
     {
-        return parent::getEndpoint() . '/billing/plans';
+        return parent::getEndpoint() . '/catalogs/products';
     }
 }

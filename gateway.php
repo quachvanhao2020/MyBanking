@@ -1,4 +1,7 @@
 <?php
+use Omnipay\PayPalv2\RestGateway;
+
+/** @var RestGateway $_GATEWAY */
 global $_GATEWAY;
 load_gate_way(__DIR__."/gateway/".GATE_WAY);
 function load_gate_way(string $root){
@@ -12,4 +15,10 @@ function load_gate_way(string $root){
         }
         $_GATEWAY = require_once $index;
     }
+}
+
+/** @return RestGateway */
+function pay_gatetway(){
+    global $_GATEWAY;
+    return $_GATEWAY;
 }

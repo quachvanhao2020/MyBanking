@@ -1,5 +1,5 @@
 <?php
-namespace Omnipay\PayPalv2;
+namespace Omnipay\PayPalv2\Response;
 
 use Omnipay\PayPal\Message\RestAuthorizeResponse as MessageRestAuthorizeResponse;
 

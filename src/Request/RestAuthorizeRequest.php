@@ -1,6 +1,7 @@
 <?php
-namespace Omnipay\PayPalv2;
+namespace Omnipay\PayPalv2\Request;
 use Omnipay\Common\Item;
+use Omnipay\PayPalv2\Response\RestAuthorizeResponse;
 
 class RestAuthorizeRequest extends AbstractRestRequest
 {
