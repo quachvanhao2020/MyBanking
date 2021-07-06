@@ -14,7 +14,7 @@ $formatter->includeStacktraces(true);
 $handle = new TelegramBotHandler(TELEGRAM_REPORT_TOKEN,TELEGRAM_REPORT_CHAT_ID,Logger::ERROR);
 $handle->setFormatter($formatter);
 $log = new Logger(APP_NAME);
-$log->pushHandler(new StreamHandler(__DIR__.'/log.log', Logger::WARNING));
+$log->pushHandler(new StreamHandler(__ROOT__.'/log.log', Logger::WARNING));
 $log->pushHandler($handle);
 
 class PHPErrorException extends Exception
@@ -31,13 +31,30 @@ class PHPErrorException extends Exception
 };
 
 function error_handler($code, $message, $file, $line) {
-    throw new PHPErrorException($code, $message, $file, $line);
+    switch($code)
+    {
+        case E_ALL:
+            throw new Exception($code, $message, $file, $line);
+            break;
+        case E_NOTICE:
+            try {
+                global $log;
+                $log->error($message.$file.$line);
+            } catch (\Throwable $th) {
+            }
+        break;
+    }
+    return false;
 }
 
 function exception_handler(Throwable $e)
 {   
-    global $log;
-    $log->error($e);
+    try {
+        global $log;
+        $log->error($e);
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
 }
 set_error_handler('error_handler');
 set_exception_handler('exception_handler');

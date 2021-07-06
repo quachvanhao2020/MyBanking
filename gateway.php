@@ -14,6 +14,8 @@ function load_gate_way(string $root){
             require_once $root."/live.php";
         }
         $_GATEWAY = require_once $index;
+    }else{
+        throw new Exception("gate_way_not_exists", 1);
     }
 }
 
