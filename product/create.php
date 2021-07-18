@@ -15,7 +15,7 @@ return (function(string $name,string $description,string $type,string $category,
       "image_url" => $image_url,
       "home_url" => $home_url,
     ];
-    $data = array_merge_recursive($data,$_data);
+    $data = array_replace_recursive($data,$_data);
     $result = [];
     $response = pay_gatetway()->createProduct([])->setData($data)->send();
     $result = $response->getData();

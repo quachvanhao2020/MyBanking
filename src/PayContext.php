@@ -20,4 +20,17 @@ class PayContext{
         //$this->cancel_url.= "?hash={$hash}";
         $this->return_url.= "?hash={$hash}";
     }
+
+    public static function fromIpContext($context = []){
+        $ip = get_client_ip();
+        $ipHash = base64_encode($ip);
+        $cache = get_cache("context");
+        $item = $cache->getItem($ipHash);
+        if (!$item->isHit()) {
+            $item->set($context);
+            $item->expiresAfter(new \DateInterval('P1Y'));
+            $cache->save($item);
+        }
+        return $item->get();
+    }
 }

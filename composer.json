@@ -6,7 +6,8 @@
         },
         "files": [
             "function.php",
-            "define.php"
+            "define.php",
+            "cache.php"
         ]
     },
     "require": {
@@ -18,7 +19,8 @@
         "omnipay/stripe": "^3.1",
         "dilab/omnipay-onepay": "^2.0",
         "phpviet/omnipay-momo": "^1.0",
-        "moneyphp/money": "^3.3"
+        "moneyphp/money": "^3.3",
+        "symfony/cache": "^5.3"
     },
     "config": {
         "process-timeout":0,

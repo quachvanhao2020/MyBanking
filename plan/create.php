@@ -45,7 +45,7 @@ return (function(string $productId,string $name,string $description,string $valu
       'setup_fee_failure_action' => 'CONTINUE',
       'payment_failure_threshold' => 3,
     ];
-    $data = array_merge_recursive($data,$_data);
+    $data = array_replace_recursive($data,$_data);
     $response = pay_gatetway()->createPlan([])->setData($data)->send();
     $result = $response->getData();
     return release($result);

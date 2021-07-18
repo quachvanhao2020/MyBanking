@@ -6,7 +6,7 @@ return (function(string $plan_id,string $locale = "en-US",string $hash,array $da
     $result = [];
     $context = new PayContext($hash);
     $context->locale = $locale;
-    $response = pay_gatetway()->createSubscription([])->setData(array_merge_recursive([
+    $response = pay_gatetway()->createSubscription([])->setData(array_replace_recursive([
       'plan_id' => $plan_id,
       'application_context' => (array)$context,
     ],$data))->send();

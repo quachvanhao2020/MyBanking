@@ -7,7 +7,7 @@ return (function(string $value = "100",string $hash = "",array $data = []){
     $context = new PayContext($hash);
     unset($context->payment_method);
     $context->user_action = "PAY_NOW";
-    $response = pay_gatetway()->createOrder([])->setData(array_merge_recursive([
+    $data = array_replace_recursive([
       "intent" => "CAPTURE",
       "purchase_units" => [
         [
@@ -18,7 +18,8 @@ return (function(string $value = "100",string $hash = "",array $data = []){
         ]
       ],
       'application_context' => (array)$context,
-    ],$data))->send();
+    ],$data);
+    $response = pay_gatetway()->createOrder([])->setData($data)->send();
     $result = $response->getData();
     return release($result);
 })(...$_INPUT);
