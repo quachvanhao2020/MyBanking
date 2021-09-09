@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__."/vendor/autoload.php";
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\Adapter\TraceableAdapter;
 use Symfony\Component\Cache\Adapter\TraceableAdapterEvent;

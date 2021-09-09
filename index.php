@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__."/vendor/autoload.php";
-require_once __DIR__."/iauth.php";
+require_once __LIB__."/cache.php";
+//require_once __LIB__."/iauth.php";
 require_once __DIR__."/police/index.php";
-require_once __DIR__."/report.php";
+require_once __LIB__."/report.php";
 require_once __DIR__."/gateway.php";
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 $_INPUT = array_values($_REQUEST);

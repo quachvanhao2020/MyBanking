@@ -6,6 +6,7 @@ define("APP_NAME","MyBanking");
 define("__ROOT__",__DIR__);
 define("__DATA__",__ROOT__."/data");
 define("__CACHE__",__DATA__."/cache");
+define("__LIB__",__ROOT__."/lib");
 define("ISDEV",getenv('ISDEV', true) ? intval(getenv('ISDEV')) : 0);
 define("ROOT_URL",(!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST']);
 define("LOG_FILE",__ROOT__."/log.log");

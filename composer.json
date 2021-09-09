@@ -6,8 +6,7 @@
         },
         "files": [
             "function.php",
-            "define.php",
-            "cache.php"
+            "define.php"
         ]
     },
     "require": {
